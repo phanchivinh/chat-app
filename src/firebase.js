@@ -1,16 +1,20 @@
-// Import the functions you need from the SDKs you need
+
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC73lcP41acNenD3YcnQeiOe-5l8bVEwvQ",
-  authDomain: "chat-app-a71ef.firebaseapp.com",
-  projectId: "chat-app-a71ef",
-  storageBucket: "chat-app-a71ef.appspot.com",
-  messagingSenderId: "857541476857",
-  appId: "1:857541476857:web:2f139c7d620c5a81327d28",
-  measurementId: "G-2QYSEHPLPX"
+  apiKey: "AIzaSyCNH-Qo3cbJttjeNFQQJRro1tsKMZSP97o",
+  authDomain: "chat-2ec37.firebaseapp.com",
+  projectId: "chat-2ec37",
+  storageBucket: "chat-2ec37.appspot.com",
+  messagingSenderId: "431172011940",
+  appId: "1:431172011940:web:f98714e053dd2a50626331"
 };
 
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+
+export const app = initializeApp(firebaseConfig);
+export const auth = getAuth();
+export const storage = getStorage();
+export const db = getFirestore(app);
