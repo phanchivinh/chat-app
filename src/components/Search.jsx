@@ -3,6 +3,8 @@ import { collection, getDocs, query, where, getDoc, setDoc, doc, updateDoc, serv
 import { db } from '../firebase';
 import { AuthContext } from '../context/AuthContext'
 
+import searchIcon from '../images/search.png'
+
 const Search = () => {
   const [username, setUsername] = useState('');
   const [user, setUser] = useState(null);
@@ -32,7 +34,7 @@ const Search = () => {
   const handleSelect = async () => {
     //check if the group(chats in firestore) exists, if not create
     const combinedId = currentUser.uid > user.uid ? currentUser.uid + user.uid : user.uid + currentUser.uid
-
+    
     try {
       const res = await getDoc(doc(db, 'chats', combinedId));
 
@@ -56,7 +58,7 @@ const Search = () => {
           [combinedId+".userInfo"]: {
             uid:user.uid,
             displayName:user.displayName,
-            photoURL: user.photoURL
+            photoURL: user.photoURL,
           },
           [combinedId+".date"]: serverTimestamp(),
           
@@ -66,7 +68,7 @@ const Search = () => {
           [combinedId+".userInfo"]: {
             uid:currentUser.uid,
             displayName:currentUser.displayName,
-            photoURL: currentUser.photoURL
+            photoURL: currentUser.photoURL,
           },
           [combinedId+".date"]: serverTimestamp(),
 
@@ -74,8 +76,7 @@ const Search = () => {
 
       }
 
-    } catch(err) {
-    }
+    } catch(err) {}
 
     setUser(null);
     setUsername("");
@@ -85,6 +86,9 @@ const Search = () => {
     <div className='search'>
         <div className='searchForm'>
             <input type='text' placeholder='Find a user' value={username} onKeyDown={handleKey} onChange={e=>{setUsername(e.target.value)}}/>
+            <div className='searchBtn' onClick={handleSearch}>
+              <img src={searchIcon} alt='' />
+            </div>
         </div>
         {err && <span style={{color:'#fff', paddingLeft: '10px'}}>User not found</span>}
         {user && (<div className='userChat' onClick={handleSelect}>

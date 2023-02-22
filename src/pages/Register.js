@@ -9,6 +9,7 @@ import { useNavigate, Link } from 'react-router-dom';
 const Register = () => {
   const [err, setErr] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [imgName, setImgName] = useState(null)
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -63,6 +64,11 @@ const Register = () => {
     
 }
 
+  const handleSelectedImg = (e) => {
+    setImgName(e.target.files[0].name)
+    console.log(imgName)
+  }
+
   return (
     <div className='formContainer'>
       <div className='formWrapper'>
@@ -72,13 +78,13 @@ const Register = () => {
           <input required type='text' placeholder='display name' />
           <input required type='email' placeholder='email' />
           <input required type='password' placeholder='password' />
-          <input required type='file' id='file' style={{ display: 'none' }} />
+          <input required type='file' id='file' style={{ display: 'none' }} onChange={handleSelectedImg} />
           <label htmlFor='file'>
             <img src={addAvatar} alt='add avatar' />
-            <span>Add an avatar</span>
+            <span style={{ width: '100%' }}>{imgName ? `${imgName}` : "Add an avatar"}</span>
           </label>
           <button disabled={loading}>Sign up</button>
-          {loading && "Uploading and compressing the image please wait..."}
+          {/* {true && <span style={{ width: '100%' }}>Uploading and compressing the image please wait...</span>} */}
           {err && <span style={{ color: 'red' }}>Something went wrong</span>}
         </form>
         <p>You do have an account? <Link to="/login">Login</Link></p>

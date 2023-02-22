@@ -47,6 +47,7 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
+            width: 100%;
 
             input {
                 padding: 10px 20px;
@@ -89,7 +90,8 @@
 }
 
 .home {
-    background-color: #a7bcff;
+    background: linear-gradient(45deg,rgb(65, 88, 208) 0%,rgb(200, 80, 192) 50%,rgb(255, 204, 112) 100%);
+    transition: all 0.5s ease;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -106,6 +108,7 @@
         .sidebar {
             flex:1;
             background-color: #3e3c61;
+            overflow-y: scroll;
 
             .navbar {
                 background-color: #2f2d52;
@@ -149,9 +152,27 @@
 
             .search {
                 border-bottom: 1px solid gray;
+                width: 100%;
                 
                 .searchForm {
+                    width: 100%;
                     padding: 10px;
+                    display: flex;
+                    justify-content: space-between;
+
+                    .searchBtn {
+                        cursor: pointer;
+                        background-color: #5d5f8d;
+                        padding: 10px;
+                        border-radius: 10px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+
+                    img {
+                        width: 16px;
+                    }
 
                     input {
                         background-color: transparent;
@@ -291,6 +312,14 @@
                 justify-content: space-between;
                 align-items: center;
                 padding: 10px;
+                position: relative;
+
+                .inputImg {
+                    position: absolute;
+                    top: -40%;
+                    left: 10px;
+                    width: 98%;
+                }
 
                 input {
                     width: 100%;
